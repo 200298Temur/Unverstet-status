@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Result extends Model
 {
     use HasFactory;
-    protected $fillable=['total_score'];
-    public function unverstet(){
-        $this->belongsTo(Unverstet::class);
+    protected $fillable=['total_score','unverstet_id'];
+    public function statistics()
+    {
+        return $this->hasMany(UniversityStatistic::class, 'university_id');
     }
 }
