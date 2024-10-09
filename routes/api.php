@@ -9,6 +9,8 @@ use App\Http\Controllers\UnverstetController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UniversityStatisticController;
+
 
 Route::prefix('unverstet')->group(function () {
     Route::get('getall',[UnverstetController::class,'index']);
@@ -64,4 +66,13 @@ Route::prefix('program')->group(function () {
     Route::put('update/{id}', [ProgramController::class,'update']);
     Route::delete('delete/{id}',[ProgramController::class,'delete']);
     Route::post('create', [ProgramController::class,'create']);
+});
+
+
+Route::prefix('statisticuniversity')->group(function () {
+    Route::get('getall', [UniversityStatisticController::class, 'index']);
+    Route::post('create', [UniversityStatisticController::class, 'store']);
+    Route::get('getOne/{id}', [UniversityStatisticController::class, 'show']);
+    Route::put('update/{id}', [UniversityStatisticController::class, 'update']);
+    Route::delete('delete/{id}', [UniversityStatisticController::class, 'destroy']);
 });
