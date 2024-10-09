@@ -1,0 +1,42 @@
+services:
+    app:
+        #restart: always
+        build: ./docker/app
+        working_dir: /var/www
+        volumes:
+            - ./:/var/www/
+        networks:
+            - sheroz_docker
+    web:
+        #restart: always
+        image: nginx:latest
+        ports:
+            - "9080:80"
+        volumes:
+            - ./:/var/www
+            - ./docker/nginx/log:/var/log/nginx
+            - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+        networks:
+            - sheroz_docker
+    db:
+        #restart: always
+        image: mysql:8.0
+        command: --default-authentication-plugin=mysql_native_password
+        environment:
+            - MYSQL_ROOT_HOST=%
+            - MYSQL_DATABASE=sheroz_docker
+            - MYSQL_ROOT_PASSWORD=dev
+        volumes:
+            - dbsheroz_docker:/var/lib/mysql
+        networks:
+            - sheroz_docker
+        ports:
+            - "4406:3306"
+
+#Docker Networks
+networks:
+    sheroz_docker:
+        driver: bridge
+
+volumes:
+    dbsheroz_docker:

@@ -1,0 +1,51 @@
+version: '3.7'
+services:
+  app:
+    restart: always
+    build: ./docker/app
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www/
+    networks:
+      - control_user
+  cron:
+    restart: always
+    build: ./docker/cron
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www/
+    networks:
+      - control_user
+  web:
+    restart: always
+    image: nginx:latest
+    ports:
+      - "9080:80"
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx/log:/var/log/nginx
+      - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+      - control_user
+  db:
+    restart: always
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      - MYSQL_ROOT_HOST=%
+      - MYSQL_DATABASE=control_user
+      - MYSQL_ROOT_PASSWORD=dev
+    volumes:
+      - dbcontrol_user:/var/lib/mysql
+    networks:
+      - control_user
+    ports:
+      - "4406:3306"
+
+#Docker Networks
+networks:
+  control_user:
+    driver: bridge
+
+volumes:
+    dbcontrol_user:
