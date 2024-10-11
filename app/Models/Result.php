@@ -9,8 +9,8 @@ class Result extends Model
 {
     use HasFactory;
     protected $fillable=['total_score','unverstet_id'];
-    public function unversitet()
+    public function unverstet()
     {
-        return $this->hasMany(UniversityStatistic::class, 'university_id');
+        return $this->hasMany(Unverstet::class, 'university_id');
     }
 }

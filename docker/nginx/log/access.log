@@ -132,3 +132,4 @@
 172.18.0.1 - - [07/Oct/2024:09:32:40 +0000] "GET /favicon.ico HTTP/1.1" 200 0 "http://127.0.0.1:9080/api/unverstet/getOne?id=2" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:131.0) Gecko/20100101 Firefox/131.0"
 172.18.0.1 - - [07/Oct/2024:09:33:31 +0000] "GET /api/type/getall HTTP/1.1" 200 75 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:131.0) Gecko/20100101 Firefox/131.0"
 172.18.0.1 - - [07/Oct/2024:09:33:31 +0000] "GET /favicon.ico HTTP/1.1" 200 0 "http://127.0.0.1:9080/api/type/getall" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:131.0) Gecko/20100101 Firefox/131.0"
+172.18.0.1 - - [11/Oct/2024:10:12:43 +0000] "POST /api/unverstet/create HTTP/1.1" 201 146 "-" "PostmanRuntime/7.37.3"
