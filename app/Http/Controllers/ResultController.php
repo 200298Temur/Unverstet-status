@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\OldStudent;
 use App\Models\Result;
 use App\Models\Unverstet;
 use App\Services\ResultService;
@@ -30,32 +31,31 @@ class ResultController extends Controller
         return $data;
     }
 
-    function calculatror($id){
+    function calculator($id){
+        $data=OldStudent::where('');
+        
+        
         return 'id orqali unverstetni balini hisoblash';
     }
-    public function update(Request $request, Unverstet $unverstet)
+    public function update(Request $request)
     {
-        $unverstet=$unverstet->id;
-        $unvers=Result::get();
+        
+        $results = Result::all();
 
+
+        foreach($results as $result){
+            $total_score = $this->calculator($result->unverstet_id); 
+            $result->total_score = $total_score;
+            $result->save();
+        }
         
-        
-        return 'update';
+        return response()->json(['message' => 'Results updated successfully'], 200);
     }
+
 
     public function delete(Request $request, Unverstet $unverstet)
     {
-        // 1. Universitetni id orqali olish va o'chirish
-        $unverstet->delete();
 
-        // 2. Total_score ni 0 qilish yoki boshqa biror amalni bajarish
-        $total_score = 0;
-
-        // 3. O'chirish muvaffaqiyatli bo'lsa, javob qaytarish
-        return response()->json([
-            'message' => 'Unverstet o\'chirildi',
-            'total_score' => $total_score,
-        ]);
     }
 
 
