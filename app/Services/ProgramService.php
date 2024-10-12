@@ -3,10 +3,11 @@
 
 use App\Http\Requests\ProgramRequest;
 use App\Models\Program;
+use Illuminate\Http\Request;
 
 class ProgramService{
-    public function getAll(){   
-        return Program::with(['unverset', 'type'])->get();;
+    public function getAll(Request $request){   
+        return Program::where('unverstet_id',$request->id)->with(['unverset', 'type'])->get();;
     }
 
     public function getone($id){

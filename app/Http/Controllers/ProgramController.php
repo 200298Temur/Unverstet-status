@@ -16,8 +16,8 @@ class ProgramController extends Controller
     }
 
 
-    public function getAll(){
-        $data=$this->ProgramService->getAll();
+    public function getAll(Request $request){
+        $data=$this->ProgramService->getAll($request);
         return ProgramResource::collection($data);
     }
 
