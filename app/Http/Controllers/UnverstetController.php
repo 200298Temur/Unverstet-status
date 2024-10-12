@@ -6,6 +6,7 @@ use App\Http\Requests\UnverstetRequest;
 use App\Http\Resources\UnverstetResource;
 use App\Models\Unverstet;
 use App\Providers\UnverstetProvider;
+use App\Services\ResultService;
 use App\Services\UnverstetService;
 use Illuminate\Http\Request;
 
@@ -34,19 +35,20 @@ class UnverstetController extends Controller
         return new UnverstetResource($unverstet);
     }
 
-
-
     public function create(UnverstetRequest $request){
         $data=$this->unverstetService->createUnverstet($request);
+        app(ResultService::class)->createResult($data->id);
         return new UnverstetResource($data);
     }
 
     public function update(UnverstetRequest $unverstetRequest,Unverstet $unverstet){
         $data=$this->unverstetService->update($unverstetRequest,$unverstet);
+        app(ResultService::class)->updateAllResults();
         return new UnverstetResource($data);
     }
 
     public function delete(UnverstetRequest $unverstetRequest){
+        app(ResultService::class)->deleteResultByUniversityId($unverstetRequest->id);
         return $this->unverstetService->detele($unverstetRequest);
     }
 }

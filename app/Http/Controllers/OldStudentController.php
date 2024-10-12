@@ -6,6 +6,7 @@ use App\Http\Requests\OldStudentRequest;
 use App\Http\Resources\OldStudentResource;
 use App\Models\OldStudent;
 use App\Services\OldStudentService;
+use App\Services\ResultService;
 use Illuminate\Http\Request;
 
 class OldStudentController extends Controller
@@ -26,17 +27,28 @@ class OldStudentController extends Controller
         return new OldStudentResource($data);
     }
 
-    public function create(OldStudentRequest  $OldStudentRequest){
-        $data=$this->OldStudentService->create( $OldStudentRequest);
+    public function create(OldStudentRequest $OldStudentRequest)
+    {
+        // Talaba ma'lumotlarini yaratish
+        $data = $this->OldStudentService->create($OldStudentRequest);
+        
+        // Resultlarni yangilash uchun ResultService chaqirish
+        app(ResultService::class)->updateAllResults();
+
+        // Resursni qaytarish
         return new OldStudentResource($data);
     }
 
+
+
     public function update(OldStudentRequest  $OldStudentRequest,OldStudent $Program){
         $data=$this->OldStudentService->update( $OldStudentRequest,$Program);
+        app(ResultService::class)->updateAllResults();
         return new OldStudentResource($data);
     }
 
     public function delete(OldStudentRequest  $OldStudentRequest){
+        app(ResultService::class)->updateAllResults();
         return $this->OldStudentService->delete( $OldStudentRequest);
     }
     

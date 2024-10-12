@@ -2,62 +2,42 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\OldStudent;
 use App\Models\Result;
-use App\Models\Unverstet;
 use App\Services\ResultService;
 use Illuminate\Http\Request;
 
 class ResultController extends Controller
 {
-    protected $resultservive;
-    public function __construct(ResultService $resultService){
-        $this->resultservive=$resultService;
-    }
-    public function getAll(){
-        return Result::with('Unverstet')->get();
+    protected $resultService;
+
+    public function __construct(ResultService $resultService)
+    {
+        $this->resultService = $resultService;
     }
 
-    public function create(Request $request){
-        $total_score = 0;
-        // Faqat id ni olish
+    public function getAll()
+    {
+        // Barcha natijalarni olish uchun servisdan foydalanamiz
+        return $this->resultService->getAllResults();
+    }
+
+    public function create(Request $request)
+    {
+        // Faqat universitet ID ni olamiz va natija yaratamiz
         $university_id = $request->data['id']; 
-        
-        $data = Result::create([
-            'total_score' => $total_score,
-            'unverstet_id' => $university_id,
-        ]);
-        
+        $data = $this->resultService->createResult($university_id);
         return $data;
     }
 
-    function calculator($id){
-        $data=OldStudent::where('');
-        
-        
-        return 'id orqali unverstetni balini hisoblash';
-    }
     public function update(Request $request)
     {
-        
-        $results = Result::all();
-
-
-        foreach($results as $result){
-            $total_score = $this->calculator($result->unverstet_id); 
-            $result->total_score = $total_score;
-            $result->save();
-        }
-        
-        return response()->json(['message' => 'Results updated successfully'], 200);
+        // Barcha natijalarni yangilash
+        return $this->resultService->updateAllResults();
     }
 
-
-    public function delete(Request $request, Unverstet $unverstet)
+    public function delete(Request $request)
     {
-
+        // Universitet ID bo'yicha natijani o'chirish
+        return $this->resultService->deleteResultByUniversityId($request->id);
     }
-
-
-
 }
