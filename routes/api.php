@@ -3,13 +3,14 @@
 use App\Http\Controllers\EditorController;
 use App\Http\Controllers\OldStudentController;
 use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\ResultController;
 use App\Http\Controllers\StatisticController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UnverstetController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UniversityStatisticController;
+
 
 
 Route::prefix('unverstet')->group(function () {
@@ -69,10 +70,7 @@ Route::prefix('program')->group(function () {
 });
 
 
-Route::prefix('statisticuniversity')->group(function () {
-    Route::get('getall', [UniversityStatisticController::class, 'index']);
-    Route::post('create', [UniversityStatisticController::class, 'store']);
-    Route::get('getOne/{id}', [UniversityStatisticController::class, 'show']);
-    Route::put('update/{id}', [UniversityStatisticController::class, 'update']);
-    Route::delete('delete/{id}', [UniversityStatisticController::class, 'destroy']);
+Route::prefix('reslut')->group(function () {
+    Route::get('getall',[ResultController::class,'getAll']);
+    Route::delete('delete/{id}',[ResultController::class,'delete']);
 });
