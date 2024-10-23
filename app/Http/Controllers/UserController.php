@@ -7,12 +7,24 @@ use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class UserController extends Controller
 {
     protected $UserService;
     public function __construct(UserService $UserService){
         $this->UserService=$UserService;
+    }
+
+    public function login(){
+        $email='temuru502@gmail.com';
+        $password='password';
+
+        $url=env('AUTH_APP_URL');
+        $response=Http::post($url.'/api/auth/login',[
+            'email'=>$email,
+            'password'=>$password
+        ]);
     }
 
     public function index(){

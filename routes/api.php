@@ -10,7 +10,7 @@ use App\Http\Controllers\UnverstetController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\API\AuthController;
 
 
 Route::prefix('unverstet')->group(function () {
@@ -73,4 +73,18 @@ Route::prefix('program')->group(function () {
 Route::prefix('reslut')->group(function () {
     Route::get('getall',[ResultController::class,'getAll']);
     Route::delete('delete/{id}',[ResultController::class,'delete']);
+});
+
+Route::group([
+
+    'middleware' => 'api',
+    'prefix' => 'auth'
+
+], function ($router) {
+
+    Route::post('login', [AuthController::class,'login']);
+    Route::post('logout', [AuthController::class,'logout']);
+    Route::post('refresh', [AuthController::class,'refresh']);
+    Route::post('me', [AuthController::class,'me']);
+
 });
