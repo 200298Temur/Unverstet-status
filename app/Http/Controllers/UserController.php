@@ -40,8 +40,8 @@ class UserController extends Controller
         return new UserResource($data);
     }
 
-    public function update(UserRequest $UserRequest,User $User){
-        $data=$this->UserService->update($UserRequest,$User);
+    public function update(UserRequest $UserRequest,string $id){
+        $data=$this->UserService->update($UserRequest,$id);
         return new UserResource($data);
     }
 

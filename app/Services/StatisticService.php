@@ -23,8 +23,9 @@ class StatisticService{
         return Statistic::create($data);
     }
 
-    public function update(StatisticRequest $StatisticRequest,Statistic $Statistic){
+    public function update(StatisticRequest $StatisticRequest,string $id){
         $data=$StatisticRequest->validated();
+        $Statistic=Statistic::findOrFail($id);
         $Statistic->update($data);
         return $Statistic;
     }

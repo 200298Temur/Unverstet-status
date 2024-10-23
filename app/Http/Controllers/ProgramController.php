@@ -31,8 +31,8 @@ class ProgramController extends Controller
         return new ProgramResource($data);
     }
 
-    public function update(ProgramRequest  $ProgramRequest,Program $Program){
-        $data=$this->ProgramService->update( $ProgramRequest,$Program);
+    public function update(ProgramRequest  $ProgramRequest,string $id){
+        $data=$this->ProgramService->update( $ProgramRequest,$id);
         return new ProgramResource($data);
     }
 

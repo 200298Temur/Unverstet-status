@@ -31,8 +31,8 @@ class StatisticController extends Controller
         return new StatisticResource($data);
     }
 
-    public function update(StatisticRequest  $statisticRequest,Statistic $Statistic){
-        $data=$this->statisticService->update( $statisticRequest,$Statistic);
+    public function update(StatisticRequest  $statisticRequest,string $id){
+        $data=$this->statisticService->update( $statisticRequest,$id);
         return new StatisticResource($data);
     }
 

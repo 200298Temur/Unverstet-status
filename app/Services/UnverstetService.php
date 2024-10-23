@@ -20,8 +20,9 @@ class UnverstetService{
         return $tag;
     }
 
-    public function update(UnverstetRequest $request,Unverstet $unverstet){
+    public function update(UnverstetRequest $request,string $id){
         $data=$request->validated();
+        $unverstet=Unverstet::findOrFail($id);
         $unverstet->update($data);
         return $unverstet;
     }

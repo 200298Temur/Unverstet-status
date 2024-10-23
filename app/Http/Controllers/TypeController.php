@@ -31,8 +31,8 @@ class TypeController extends Controller
         return new TypeResource($data);
     }
 
-    public function update(TypeRequest $typeRequest,Type $type){
-        $data=$this->typeservice->update($typeRequest,$type);
+    public function update(TypeRequest $typeRequest,string $id){
+        $data=$this->typeservice->update($typeRequest,$id);
         return new TypeResource($data);
     }
 

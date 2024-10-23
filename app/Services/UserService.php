@@ -27,8 +27,9 @@ class UserService{
         return User::create($data);
     }
 
-    public function update(UserRequest $UserRequest,User $User){
+    public function update(UserRequest $UserRequest,string $id){
         $data=$UserRequest->validated();
+        $User=User::findOrFail($id);
         $User->update($data);
         return $User;
     }

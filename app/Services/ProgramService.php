@@ -23,8 +23,9 @@ class ProgramService{
         return Program::create($data);
     }
 
-    public function update(ProgramRequest $ProgramRequest,Program $Program){
+    public function update(ProgramRequest $ProgramRequest,string $id){
         $data=$ProgramRequest->validated();
+        $Program=Program::findOrFail($id);
         $Program->update($data);
         return $Program;
     }

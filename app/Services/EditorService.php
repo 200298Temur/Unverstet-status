@@ -22,8 +22,10 @@ class EditorService{
         return Editor::create($data);
     }
 
-    public function update(EditorRequest $EditorRequest,Editor $Editor){
+    public function update(EditorRequest $EditorRequest,string $id){
         $data=$EditorRequest->validated();
+        $Editor=Editor::find($id);
+        
         $Editor->update($data);
         return $Editor;
     }

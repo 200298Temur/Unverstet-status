@@ -31,8 +31,8 @@ class EditorController extends Controller
         return new EditorResource($data);
     }
 
-    public function update(EditorRequest  $EditorRequest,Editor $Editor){
-        $data=$this->EditorService->update( $EditorRequest,$Editor);
+    public function update(EditorRequest  $EditorRequest,string $id){
+        $data=$this->EditorService->update( $EditorRequest,$id);
         return new EditorResource($data);
     }
 

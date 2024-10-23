@@ -41,8 +41,8 @@ class OldStudentController extends Controller
 
 
 
-    public function update(OldStudentRequest  $OldStudentRequest,OldStudent $Program){
-        $data=$this->OldStudentService->update( $OldStudentRequest,$Program);
+    public function update(OldStudentRequest  $OldStudentRequest,string $id){
+        $data=$this->OldStudentService->update( $OldStudentRequest,$id);
         app(ResultService::class)->updateAllResults();
         return new OldStudentResource($data);
     }

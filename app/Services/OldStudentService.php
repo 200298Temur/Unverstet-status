@@ -23,8 +23,9 @@ class OldStudentService{
         return OldStudent::create($data);
     }
 
-    public function update(OldStudentRequest $OldStudentRequest,OldStudent $OldStudent){
+    public function update(OldStudentRequest $OldStudentRequest,string $id){
         $data=$OldStudentRequest->validated();
+        $OldStudent=OldStudent::findOrFail($id);
         $OldStudent->update($data);
         return $OldStudent;
     }

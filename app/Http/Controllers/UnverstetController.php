@@ -41,8 +41,8 @@ class UnverstetController extends Controller
         return new UnverstetResource($data);
     }
 
-    public function update(UnverstetRequest $unverstetRequest,Unverstet $unverstet){
-        $data=$this->unverstetService->update($unverstetRequest,$unverstet);
+    public function update(UnverstetRequest $unverstetRequest,string $id){
+        $data=$this->unverstetService->update($unverstetRequest,$id);
         app(ResultService::class)->updateAllResults();
         return new UnverstetResource($data);
     }

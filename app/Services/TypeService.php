@@ -27,8 +27,9 @@ class TypeService{
         return Type::create($data);
     }
 
-    public function update(TypeRequest $typeRequest,Type $type){
+    public function update(TypeRequest $typeRequest,string $id){
         $data=$typeRequest->validated();
+        $type=Type::findOrFail($id);
         $type->update($data);
         return $type;
     }
