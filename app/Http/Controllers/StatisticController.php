@@ -3,40 +3,107 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StatisticRequest;
-use App\Http\Resources\StatisticResource;
 use App\Models\Statistic;
-use App\Services\StatisticService;
 use Illuminate\Http\Request;
 
+/**
+ * @OA\Tag(
+ *     name="Statistics",
+ *     description="Everything about statistics"
+ * )
+ */
 class StatisticController extends Controller
 {
-    protected $statisticService;
-    public function __construct(StatisticService $statisticService){
-        $this->statisticService=$statisticService;
+    /**
+     * @OA\Get(
+     *     path="/api/statistics",
+     *     summary="Get all statistics",
+     *     tags={"Statistics"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *         @OA\JsonContent(ref="#/components/schemas/Statistic")
+     *     )
+     * )
+     */
+    public function getAll()
+    {
+        return Statistic::all();  // Barcha statistikani qaytaradi
     }
 
-
-    public function getAll(){
-        $data=$this->statisticService->getAll();
-        return StatisticResource::collection($data);
+    /**
+     * @OA\Post(
+     *     path="/api/statistics",
+     *     summary="Create a new statistic",
+     *     tags={"Statistics"},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/StatisticRequest")
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="Statistic created successfully",
+     *         @OA\JsonContent(ref="#/components/schemas/Statistic")
+     *     )
+     * )
+     */
+    public function create(StatisticRequest $request)
+    {
+        $statistic = Statistic::create($request->validated());
+        return response()->json($statistic, 201); // Yangi statistikani yaratadi
     }
 
-    public function getOne(StatisticRequest  $statisticRequest){
-        $data=$this->statisticService->getone( $statisticRequest->id);
-        return new StatisticResource($data);
+    /**
+     * @OA\Put(
+     *     path="/api/statistics/{id}",
+     *     summary="Update an existing statistic",
+     *     tags={"Statistics"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="Statistic ID",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/StatisticRequest")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Statistic updated successfully",
+     *         @OA\JsonContent(ref="#/components/schemas/Statistic")
+     *     )
+     * )
+     */
+    public function update(StatisticRequest $request, $id)
+    {
+        $statistic = Statistic::findOrFail($id);
+        $statistic->update($request->validated());
+        return response()->json($statistic);  // Statistikani yangilaydi
     }
 
-    public function create(StatisticRequest  $statisticRequest){
-        $data=$this->statisticService->create( $statisticRequest);
-        return new StatisticResource($data);
-    }
-
-    public function update(StatisticRequest  $statisticRequest,string $id){
-        $data=$this->statisticService->update( $statisticRequest,$id);
-        return new StatisticResource($data);
-    }
-
-    public function delete(StatisticRequest  $statisticRequest){
-        return $this->statisticService->delete( $statisticRequest);
+    /**
+     * @OA\Delete(
+     *     path="/api/statistics/{id}",
+     *     summary="Delete a statistic",
+     *     tags={"Statistics"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="Statistic ID",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(
+     *         response=204,
+     *         description="Statistic deleted successfully"
+     *     )
+     * )
+     */
+    public function delete($id)
+    {
+        Statistic::findOrFail($id)->delete();
+        return response()->json(null, 204);  // Statistikani o'chiradi
     }
 }

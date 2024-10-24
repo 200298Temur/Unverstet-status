@@ -1,0 +1,1100 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Laravel API Documentation",
+        "description": "This is a sample Laravel API documentation using Swagger",
+        "contact": {
+            "email": "temuru502@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/auth/login": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "User login",
+                "description": "Login a user and return a token",
+                "operationId": "1ff9c65c5cd1a8e0786e318eed856972",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "temuru502@gmail.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "password123"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "token": {
+                                            "type": "string",
+                                            "example": "eyJhbGciOiJIUzI1..."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/auth/me": {
+            "get": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Get authenticated user",
+                "description": "Returns the authenticated user",
+                "operationId": "257a57ee6760f86fb4b11ff94dba1f38",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "John Doe"
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "example": "johndoe@example.com"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/auth/logout": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Logout user",
+                "description": "Logs out the authenticated user",
+                "operationId": "eae6a8251a6469bbabe454860f64cf37",
+                "responses": {
+                    "200": {
+                        "description": "Successfully logged out",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "msg": {
+                                            "type": "string",
+                                            "example": "Successfully logged out"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/auth/refresh": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Refresh token",
+                "description": "Refreshes the authentication token",
+                "operationId": "cbc10c8921f8f6c47d1dd818a3901faf",
+                "responses": {
+                    "200": {
+                        "description": "Token refreshed successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "access_token": {
+                                            "type": "string",
+                                            "example": "eyJhbGciOiJIUzI1..."
+                                        },
+                                        "token_type": {
+                                            "type": "string",
+                                            "example": "bearer"
+                                        },
+                                        "expires_in": {
+                                            "type": "integer",
+                                            "example": 3600
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/api/statistics": {
+            "get": {
+                "tags": [
+                    "Statistics"
+                ],
+                "summary": "Get all statistics",
+                "operationId": "5dcc4a1ba1bc86e6f67e79f2f13938f7",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Statistic"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Statistics"
+                ],
+                "summary": "Create a new statistic",
+                "operationId": "74953a9b92730f4a4db99434d658d5d4",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StatisticRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Statistic created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Statistic"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/statistics/{id}": {
+            "put": {
+                "tags": [
+                    "Statistics"
+                ],
+                "summary": "Update an existing statistic",
+                "operationId": "88d8bf146b1bd1a317da2846a5f5bc81",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Statistic ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StatisticRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Statistic updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Statistic"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Statistics"
+                ],
+                "summary": "Delete a statistic",
+                "operationId": "d7ebc0ae3a9e1c9e6628c1abffab136d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Statistic ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Statistic deleted successfully"
+                    }
+                }
+            }
+        },
+        "/types": {
+            "get": {
+                "tags": [
+                    "Types"
+                ],
+                "summary": "Get all types",
+                "operationId": "5b00d256d92a384d19494dcf21a787f2",
+                "responses": {
+                    "200": {
+                        "description": "List of types",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/TypeResource"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/types/{id}": {
+            "get": {
+                "tags": [
+                    "Types"
+                ],
+                "summary": "Get a single type",
+                "operationId": "0ab8bd19a1e5819dcf0237308ff76c7c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Type details",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TypeResource"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Type not found"
+                    }
+                }
+            }
+        },
+        "/types/create": {
+            "post": {
+                "tags": [
+                    "Types"
+                ],
+                "summary": "Create a new type",
+                "operationId": "24697bc4d2ac1e03e28420d8dd4a4cf2",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TypeRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Type created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TypeResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/types/update/{id}": {
+            "put": {
+                "tags": [
+                    "Types"
+                ],
+                "summary": "Update an existing type",
+                "operationId": "178b0bb8fb57d8cacb37b43f0894a84f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TypeRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Type updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TypeResource"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Type not found"
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/types/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "Types"
+                ],
+                "summary": "Delete a type",
+                "operationId": "b2a232a284f4f26d402971593710667c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Type deleted successfully"
+                    },
+                    "404": {
+                        "description": "Type not found"
+                    }
+                }
+            }
+        },
+        "/unverstet": {
+            "get": {
+                "tags": [
+                    "Universities"
+                ],
+                "summary": "Get all universities",
+                "operationId": "6871fdbab30f8e9c067dece4bd768f9f",
+                "responses": {
+                    "200": {
+                        "description": "List of universities",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/UnverstetResource"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/unverstet/{id}": {
+            "get": {
+                "tags": [
+                    "Universities"
+                ],
+                "summary": "Get a single university",
+                "operationId": "700c119ab9696e44df1880bddc9e599c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "University details",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnverstetResource"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "University not found"
+                    }
+                }
+            }
+        },
+        "/unverstet/create": {
+            "post": {
+                "tags": [
+                    "Universities"
+                ],
+                "summary": "Create a new university",
+                "operationId": "d258d51173be6e8683a57869176b4d31",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnverstetRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "University created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnverstetResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/unverstet/update/{id}": {
+            "put": {
+                "tags": [
+                    "Universities"
+                ],
+                "summary": "Update an existing university",
+                "operationId": "191a53bd0e9ffea89d79ff25b9e26071",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnverstetRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "University updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnverstetResource"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "University not found"
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/unverstet/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "Universities"
+                ],
+                "summary": "Delete a university",
+                "operationId": "db3006d30f4ffc22def72a46d09e9aba",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "University deleted successfully"
+                    },
+                    "404": {
+                        "description": "University not found"
+                    }
+                }
+            }
+        },
+        "/user/getall": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get all users",
+                "description": "Returns a list of all users",
+                "operationId": "76ae5e684846d079f769c81545d3f29a",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/UserResource"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/getOne/{id}": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get a single user",
+                "description": "Returns a user by ID",
+                "operationId": "7374b4bdb007467049460a9776d93570",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserResource"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "User not found"
+                    }
+                }
+            }
+        },
+        "/user/create": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Create a new user",
+                "description": "Creates a new user and returns the created user",
+                "operationId": "9039ea5214f8036d1cc688e25b749717",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "User created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            }
+        },
+        "/user/update/{id}": {
+            "put": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Update a user",
+                "description": "Updates an existing user",
+                "operationId": "d07fb415d146f5d8538ae0054592d03f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "User updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserResource"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "User not found"
+                    }
+                }
+            }
+        },
+        "/user/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Delete a user",
+                "description": "Deletes a user by ID",
+                "operationId": "ad0f76527ff27319f208b68b06e83a33",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "User deleted successfully"
+                    },
+                    "404": {
+                        "description": "User not found"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "TokenResponse": {
+                "properties": {
+                    "access_token": {
+                        "type": "string",
+                        "example": "eyJhbGciOiJIUzI1..."
+                    },
+                    "token_type": {
+                        "type": "string",
+                        "example": "bearer"
+                    },
+                    "expires_in": {
+                        "type": "integer",
+                        "example": 3600
+                    }
+                },
+                "type": "object"
+            },
+            "StatisticRequest": {
+                "required": [
+                    "unverstet_id",
+                    "type_id",
+                    "total_students",
+                    "total_scholarships"
+                ],
+                "properties": {
+                    "unverstet_id": {
+                        "description": "ID of the associated university",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "type_id": {
+                        "description": "ID of the type (e.g., program type)",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "total_students": {
+                        "description": "Total number of students",
+                        "type": "integer",
+                        "example": 500
+                    },
+                    "total_scholarships": {
+                        "description": "Total number of scholarships",
+                        "type": "integer",
+                        "example": 150
+                    }
+                },
+                "type": "object"
+            },
+            "TypeRequest": {
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "Example Type"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "Description of the type"
+                    }
+                },
+                "type": "object"
+            },
+            "UnverstetRequest": {
+                "title": "University Request",
+                "required": [
+                    "name",
+                    "location"
+                ],
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "Sample University"
+                    },
+                    "location": {
+                        "type": "string",
+                        "example": "City, Country"
+                    }
+                },
+                "type": "object"
+            },
+            "UserRequest": {
+                "title": "User Request",
+                "required": [
+                    "username",
+                    "email",
+                    "password"
+                ],
+                "properties": {
+                    "username": {
+                        "type": "string",
+                        "example": "john_doe"
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email",
+                        "example": "john.doe@example.com"
+                    },
+                    "password": {
+                        "type": "string",
+                        "example": "password123"
+                    }
+                },
+                "type": "object"
+            },
+            "StatisticResource": {
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "university_id": {
+                        "type": "integer"
+                    },
+                    "employment_rate": {
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "average_income": {
+                        "type": "integer"
+                    },
+                    "employment_growth_rate": {
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "year": {
+                        "type": "integer"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "TypeResource": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Example Type"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "Description of the type"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2024-10-24T12:34:56"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2024-10-24T12:34:56"
+                    }
+                },
+                "type": "object"
+            },
+            "UnverstetResource": {
+                "title": "University Resource",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Sample University"
+                    },
+                    "location": {
+                        "type": "string",
+                        "example": "City, Country"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2024-01-01T00:00:00Z"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2024-01-01T00:00:00Z"
+                    }
+                },
+                "type": "object"
+            },
+            "UserResource": {
+                "title": "User Resource",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "username": {
+                        "type": "string",
+                        "example": "john_doe"
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email",
+                        "example": "john.doe@example.com"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2024-01-01T00:00:00Z"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2024-01-01T00:00:00Z"
+                    }
+                },
+                "type": "object"
+            },
+            "Statistic": {
+                "required": [
+                    "unverstet_id",
+                    "type_id",
+                    "total_students",
+                    "total_scholarships"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "unverstet_id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "type_id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "total_students": {
+                        "type": "integer",
+                        "example": 500
+                    },
+                    "total_scholarships": {
+                        "type": "integer",
+                        "example": 150
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2024-10-10T10:00:00Z"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2024-10-10T12:00:00Z"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "responses": {
+            "200": {
+                "description": "Token response",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/TokenResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Statistics",
+            "description": "Everything about statistics"
+        },
+        {
+            "name": "Types",
+            "description": "API for managing types"
+        },
+        {
+            "name": "Universities",
+            "description": "API for managing universities"
+        },
+        {
+            "name": "Authentication",
+            "description": "Authentication"
+        },
+        {
+            "name": "User",
+            "description": "User"
+        }
+    ]
+}

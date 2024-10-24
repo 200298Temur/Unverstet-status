@@ -4,6 +4,17 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * @OA\Schema(
+ *     schema="UnverstetRequest",
+ *     type="object",
+ *     title="University Request",
+ *     required={"name", "location"},
+ *     @OA\Property(property="name", type="string", example="Sample University"),
+ *     @OA\Property(property="location", type="string", example="City, Country"),
+ * )
+ */
+
 class UnverstetRequest extends FormRequest
 {
     /**

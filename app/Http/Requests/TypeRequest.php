@@ -3,6 +3,15 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+/**
+ * @OA\Schema(
+ *     schema="TypeRequest",
+ *     type="object",
+ *     required={"name"},
+ *     @OA\Property(property="name", type="string", example="Example Type"),
+ *     @OA\Property(property="description", type="string", example="Description of the type")
+ * )
+ */
 
 class TypeRequest extends FormRequest
 {

@@ -46,11 +46,11 @@ Route::prefix('editor')->group(function () {
 });
 
 Route::prefix('user')->group(function () {
-    Route::get('getall',[UserController::class,'getAll']);
-    Route::get('getOne/{id}',[UserController::class,'getOne']);
-    Route::put('update/{id}', [UserController::class,'update']);
-    Route::delete('delete/{id}',[UserController::class,'delete']);
-    Route::post('create', [UserController::class,'create']);
+    Route::get('getall', [UserController::class, 'index']);
+    Route::get('getOne/{id}', [UserController::class, 'getOne']);
+    Route::post('create', [UserController::class, 'create']);
+    Route::put('update/{id}', [UserController::class, 'update']);
+    Route::delete('delete/{id}', [UserController::class, 'delete']);
 });
 
 Route::prefix('oldstudent')->group(function () {
@@ -81,10 +81,7 @@ Route::group([
     'prefix' => 'auth'
 
 ], function ($router) {
-
-    Route::post('login', [AuthController::class,'login']);
-    Route::post('logout', [AuthController::class,'logout']);
-    Route::post('refresh', [AuthController::class,'refresh']);
-    Route::post('me', [AuthController::class,'me']);
-
+    Route::post('login', [AuthController::class, 'login'])->name('auth.login');
+    Route::post('logout', [AuthController::class, 'logout'])->name('auth.logout');
+    Route::post('refresh', [AuthController::class, 'refresh'])->name('auth.refresh');    
 });

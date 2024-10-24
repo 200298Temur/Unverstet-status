@@ -5,6 +5,19 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @OA\Schema(
+ *     schema="UnverstetResource",
+ *     type="object",
+ *     title="University Resource",
+ *     @OA\Property(property="id", type="integer", example=1),
+ *     @OA\Property(property="name", type="string", example="Sample University"),
+ *     @OA\Property(property="location", type="string", example="City, Country"),
+ *     @OA\Property(property="created_at", type="string", format="date-time", example="2024-01-01T00:00:00Z"),
+ *     @OA\Property(property="updated_at", type="string", format="date-time", example="2024-01-01T00:00:00Z")
+ * )
+ */
+
 class UnverstetResource extends JsonResource
 {
     /**
