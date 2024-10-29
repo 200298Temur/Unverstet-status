@@ -179,6 +179,548 @@
                 }
             }
         },
+        "/api/editors": {
+            "get": {
+                "tags": [
+                    "Editor"
+                ],
+                "summary": "Get all editors",
+                "operationId": "2fd9b22bbe5c300baf88714264d76884",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Editor"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Editor"
+                ],
+                "summary": "Create a new editor",
+                "operationId": "5bb6792dff09d6438c97a993ace55098",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Editor"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successfully created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Editor"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/editors/{id}": {
+            "get": {
+                "tags": [
+                    "Editor"
+                ],
+                "summary": "Get a single editor",
+                "operationId": "55f2e6c506906db1c85ba205bd96a32a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Editor"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Editor"
+                ],
+                "summary": "Update an existing editor",
+                "operationId": "fe6ea2632ec1ddebea1dd228bf2ed88c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Editor"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Editor"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Editor"
+                ],
+                "summary": "Delete an editor",
+                "operationId": "b4a805d143c5c70df9cc3407544ee2f6",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successfully deleted"
+                    }
+                }
+            }
+        },
+        "/api/old-students": {
+            "get": {
+                "tags": [
+                    "OldStudent"
+                ],
+                "summary": "Get all old students",
+                "operationId": "f69551ab74024ef2fc6324ceddbe02af",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/OldStudent"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "OldStudent"
+                ],
+                "summary": "Create a new old student",
+                "operationId": "ef7bfdc6511806c9ff3f86381d2da5f3",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/OldStudent"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successfully created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/OldStudent"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/old-students/{id}": {
+            "get": {
+                "tags": [
+                    "OldStudent"
+                ],
+                "summary": "Get a single old student",
+                "operationId": "bb92e80f7e4d404e1f7ebf43ecd22cda",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/OldStudent"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "OldStudent"
+                ],
+                "summary": "Update an existing old student",
+                "operationId": "bde1efe9f0151ddafe6f9406276f7ba9",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/OldStudent"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/OldStudent"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "OldStudent"
+                ],
+                "summary": "Delete an old student",
+                "operationId": "301ac4dd76825ca47f8800d92bf8673b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successfully deleted"
+                    }
+                }
+            }
+        },
+        "/api/programs": {
+            "get": {
+                "tags": [
+                    "Program"
+                ],
+                "summary": "Get all programs",
+                "operationId": "9f135ca37af7d971e34eb2441fb501c3",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Program"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Program"
+                ],
+                "summary": "Create a new program",
+                "operationId": "58e905396033ba56be803e06e88acf75",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Program"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successfully created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Program"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/programs/{id}": {
+            "get": {
+                "tags": [
+                    "Program"
+                ],
+                "summary": "Get a single program",
+                "operationId": "4d8a92fe51a6c125b9bba24f6b5db551",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Program"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Program"
+                ],
+                "summary": "Update an existing program",
+                "operationId": "ce3ab66dc7edb62e61ba4bde982be7ab",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Program"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Program"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Program"
+                ],
+                "summary": "Delete a program",
+                "operationId": "c46eabd57fe64d34fc5b4f726eb70435",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successfully deleted"
+                    }
+                }
+            }
+        },
+        "/api/results": {
+            "get": {
+                "tags": [
+                    "Result"
+                ],
+                "summary": "Barcha natijalarni olish",
+                "operationId": "063c90b8c9756c2243c25f57da2a686e",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Result"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Result"
+                ],
+                "summary": "Barcha natijalarni yangilash",
+                "operationId": "0eee194ebb33b8586a2596d19db1afd3",
+                "responses": {
+                    "200": {
+                        "description": "Successfully updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Result"
+                ],
+                "summary": "Natija yaratish",
+                "operationId": "0233c572a6f3f22e59ed6d29ef1562cb",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "data": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "example": 1
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successfully created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/results/{id}": {
+            "delete": {
+                "tags": [
+                    "Result"
+                ],
+                "summary": "Natijani o'chirish",
+                "operationId": "c996e5bb5c12d107627282409050fe83",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successfully deleted"
+                    }
+                }
+            }
+        },
         "/api/statistics": {
             "get": {
                 "tags": [
@@ -1020,6 +1562,144 @@
                 },
                 "type": "object"
             },
+            "Editor": {
+                "title": "Editor",
+                "required": [
+                    "username",
+                    "email",
+                    "password",
+                    "unverstet_id"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "username": {
+                        "type": "string",
+                        "example": "editor_username"
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email",
+                        "example": "editor@example.com"
+                    },
+                    "password": {
+                        "type": "string",
+                        "example": "password123"
+                    },
+                    "unverstet_id": {
+                        "type": "integer",
+                        "example": 1
+                    }
+                },
+                "type": "object"
+            },
+            "OldStudent": {
+                "title": "OldStudent",
+                "required": [
+                    "is_working",
+                    "year",
+                    "passportCode",
+                    "user_id",
+                    "program_id"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "is_working": {
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "job": {
+                        "type": "string",
+                        "example": "Software Engineer"
+                    },
+                    "salaryYear": {
+                        "type": "integer",
+                        "example": 50000
+                    },
+                    "year": {
+                        "type": "integer",
+                        "example": 2024
+                    },
+                    "passportCode": {
+                        "type": "string",
+                        "example": "AB123456"
+                    },
+                    "ruxsat": {
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "user_id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "program_id": {
+                        "type": "integer",
+                        "example": 1
+                    }
+                },
+                "type": "object"
+            },
+            "Program": {
+                "title": "Program",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Computer Science"
+                    },
+                    "unverstet_id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "type_id": {
+                        "type": "integer",
+                        "example": 2
+                    }
+                },
+                "type": "object"
+            },
+            "Result": {
+                "required": [
+                    "total_score",
+                    "unverstet_id"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "total_score": {
+                        "type": "integer",
+                        "example": 95
+                    },
+                    "unverstet_id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2024-10-10T10:00:00Z"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2024-10-10T12:00:00Z"
+                    }
+                },
+                "type": "object"
+            },
             "Statistic": {
                 "required": [
                     "unverstet_id",
@@ -1076,6 +1756,22 @@
         }
     },
     "tags": [
+        {
+            "name": "Editor",
+            "description": "Editor CRUD operations"
+        },
+        {
+            "name": "OldStudent",
+            "description": "OldStudent CRUD operations"
+        },
+        {
+            "name": "Program",
+            "description": "Program CRUD operations"
+        },
+        {
+            "name": "Result",
+            "description": "Everything about Results"
+        },
         {
             "name": "Statistics",
             "description": "Everything about statistics"

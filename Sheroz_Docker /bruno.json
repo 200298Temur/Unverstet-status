@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Univer_ish",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
